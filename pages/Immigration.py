@@ -37,7 +37,7 @@ if select == 'Right':
     data = {'Source':'https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/The_Telegraph_logo.svg/512px-The_Telegraph_logo.svg.png?20171108145520', 'Headline': headlines[1][1], 'Link': links[0][1][1]}
 
 if select == 'Center-left':
-    data = {'Source':'https://tonyrobertson.mycouncillor.org.uk/files/2016/03/The-Independent-Logo.gif', 'Headline': headlines[4][1], 'Link': links[0][4][1]}
+    data = {'Source':'https://tonyrobertson.mycouncillor.org.uk/files/2016/03/The-Independent-Logo.gif', 'Headline': headlines[3][1], 'Link': links[0][3][1]}
 
 if select == 'Center-right':
     data = {'Source':'https://1000logos.net/wp-content/uploads/2020/03/The-Times-Logo.png', 'Headline': headlines[0][1], 'Link': links[0][0][1]}
