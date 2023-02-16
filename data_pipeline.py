@@ -7,20 +7,19 @@ from streamlit_extras.image_in_tables import table_with_images
 import pandas as pd
 
 from streamlit_extras.app_logo import add_logo
-add_logo("https://cdn-icons-png.flaticon.com/512/183/183412.png", height=20)
+add_logo("logo.jpg", height=200)
 
 with open('styles.css') as f:
     st.markdown(f'<style>{f.read()}</style', unsafe_allow_html=True)
 
-with st.sidebar:
-    st.image('https://cdn-icons-png.flaticon.com/512/183/183412.png',width=200)
+
 st.write("""<style>@import url('https://fonts.googleapis.com/css2?family=Mukta');html, body, [class*="css"]  {  
    font-family: 'Kanit';  
 }</style>""", unsafe_allow_html=True)
 
 # RIGHT WING PIPELINE
 
-the_times_urls = ["https://www.thetimes.co.uk/search?filter=all&q=transgender&source=search-page", 'https://www.thetimes.co.uk/search?source=search-page&q=immigration', 'https://www.thetimes.co.uk/search?source=search-page&q=racism', 'https://www.thetimes.co.uk/search?source=search-page&q=strikes', 'https://www.thetimes.co.uk/search?source=search-page&q=brexit' ]
+the_times_urls = ["https://www.thetimes.co.uk/search?filter=all&q=transgender&source=search-page", 'https://www.thetimes.co.uk/search?source=search-page&q=immigration', 'https://www.thetimes.co.uk/search?source=search-page&q=racism', 'https://www.thetimes.co.uk/search?source=search-page&q=brexit' ]
 telegraph_urls = ['https://www.telegraph.co.uk/lgbt/', 'https://www.telegraph.co.uk/immigration/', 'https://www.telegraph.co.uk/racism/' , 'https://www.telegraph.co.uk/brexit/']
 
 class TheTimesPipeline:
@@ -83,7 +82,7 @@ class TelegraphPipeline:
                     if num < 11:
                         link = i.a['href']
                         link = 'https://www.telegraph.co.uk/' + link
-                        headline = i.span.text
+                        headline = (i.span.text)[1:-1]
                         ten_headlines.append(headline)
                         ten_links.append(link)
                         num +=1
@@ -241,112 +240,48 @@ class INewsPipeline:
         return self.recent_ten_headlines, self.recent_ten_links
 
 
+rw1 = TheTimesPipeline(urls=the_times_urls) 
+#rw1.get_topic_page_response()
+rw1_head_links = rw1.open_html_and_parse()
+
+rw2 = TelegraphPipeline(urls=telegraph_urls)
+#rw2.get_topic_page_response()
+rw2_head_links = rw2.open_html_and_parse()
+
+lw1 = GuardianPipeline(urls=guardian_urls)
+#lw1.get_topic_page_response()
+lw1_head_links = lw1.open_html_and_parse()
+
+lw2 = IndependentPipeline(urls=independent_urls)
+#lw2.get_topic_page_response()
+lw2_head_links = lw2.open_html_and_parse()
+
+n = INewsPipeline(urls=i_news_links)
+#n.get_topic_page_response()
+n_head_links = n.open_html_and_parse()
 
 
+headlines = [rw1_head_links[0], rw2_head_links[0], lw1_head_links[0], lw2_head_links[0], n_head_links[0]]
+links_before_formatted = [rw1_head_links[1], rw2_head_links[1], lw1_head_links[1], lw2_head_links[1], n_head_links[1]]
+
+def sort_links(links_before_formatted):
+    list_of_links = []
+    for link in links_before_formatted:
+        for topic in link:
+            for index, value in enumerate(topic):
+                topic[index] = f"<a  href='{topic[index]}'>View Article</a>"
+        list_of_links.append(links_before_formatted)
+    return(list_of_links)
 
 
+links = sort_links(links_before_formatted)
+st.write((links[0][4][3]))
 
 
+import pickle
 
+with open('links', 'wb') as l:
+    pickle.dump(links, l)
 
-
-
-
-
-a=INewsPipeline(urls=i_news_links)
-
-#a.get_topic_page_response()
-T_headlines_and_links = a.open_html_and_parse()
-st.write(T_headlines_and_links[0][0])
-
-'''a = TheTimesPipeline(urls=the_times_urls)
-#a.get_topic_page_response()
-T_headlines_and_links = a.open_html_and_parse()
-st.write(T_headlines_and_links[0][0])'''
-'''a = DailyMailPipeline(urls=daily_mail_urls)
-#a.get_topic_page_response()
-DM_headlines_and_links = a.open_html_and_parse()
-st.write(DM_headlines_and_links[1][1])'''
-
-'''
-a = GuardianPipeline('trans')
-#a.get_topic_page_response()
-G_headlines_and_links = a.get_headline_and_links()
-
-b = IndependentPipeline('ya')
-I_headlines_and_links = b.get_headline_and_links()
-
-
-def list_of_headlines():
-    DM_headlines = DM_headlines_and_links[0]
-    G_headlines = G_headlines_and_links[0]
-    I_headlines = I_headlines_and_links[0]
-    return DM_headlines, G_headlines, I_headlines 
-
-
-
-def links():
-    DM_links = DM_headlines_and_links[1]
-    G_links = G_headlines_and_links[1]
-    I_links = I_headlines_and_links[1]
-    return DM_links, G_links, I_links
-
-def sort_links(links):
-    for index, value in enumerate(links):
-        links[index] = f"<a  href='{links[index]}'>View Article</a>"
-    return(links)
-
-DM_links = DM_headlines_and_links[1]
-G_links = G_headlines_and_links[1]
-I_links = I_headlines_and_links[1]
-DM_links = sort_links(DM_links)
-G_links = sort_links(G_links)
-I_links = sort_links(I_links)
-
-select = st.select_slider(label='timeline', options =('Left', 'Center', 'Right'), value = 'Center', label_visibility='collapsed')
-
-if select == 'Center':
-    data = {'Source':'https://tonyrobertson.mycouncillor.org.uk/files/2016/03/The-Independent-Logo.gif', 'Headline': I_headlines_and_links[0], 'Link': I_links}
-if select == 'Left':
-    data = {'Source':'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/The_Guardian_2018.svg/2560px-The_Guardian_2018.svg.png','Headline': G_headlines_and_links[0], 'Links': G_links }
-if select == 'Right':
-    data = {'Source':'https://image.pngaaa.com/480/3881480-middle.png', 'Headline':DM_headlines_and_links[0], 'Link': DM_links }
-
-df = (pd.DataFrame(data))
-hide_table_row_index = """
-            <style>
-
-            thead tr th:first-child {display:none}
-            tbody th {display:none}
-            
-            </style>
-            """
-
-
-st.markdown("<h1 style='text-align: center;color: black;'>Trans Issues</h1>", unsafe_allow_html=True)
-
-st.write('')
-
-
-with st.expander('**Principles** ', expanded=True):
-    columns = st.columns(3)
-    columns[0].write('Left')
-    st.write('')
-
-
-with st.expander('**Headlines**', expanded=True):
-    st.write('')
-
-        # Inject CSS with Markdown
-    st.markdown(hide_table_row_index, unsafe_allow_html=True)
-
-    df_html = table_with_images(df=df, url_columns=('Source',))
-    st.markdown(df_html, unsafe_allow_html=True)
-
-    # only grab articles from guardian
-
-with st.expander('**Videos**', expanded=True):
-    cols = st.columns(2)
-    cols[0].video('https://www.youtube.com/watch?v=TBJGgCHgf5w')
-
-    cols[1].video('https://www.youtube.com/watch?v=TBJGgCHgf5w') '''
+with open('headlines', 'wb') as h:
+    pickle.dump(headlines, h)
