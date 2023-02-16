@@ -9,10 +9,6 @@ with open('styles.css') as f:
     st.markdown(f'<style>{f.read()}</style', unsafe_allow_html=True)
 
 
-st.write("""<style>@import url('https://fonts.googleapis.com/css2?family=Mukta');html, body, [class*="css"]  {  
-   font-family: 'Kanit';  
-}</style>""", unsafe_allow_html=True)
-
 
 select = st.select_slider(label='timeline', options =('Left','Center-left', 'Center', 'Center-right', 'Right'), value = 'Center', label_visibility='collapsed')
 
