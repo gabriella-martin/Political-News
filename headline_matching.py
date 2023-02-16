@@ -94,7 +94,7 @@ full_matches = {}
 
 used = []
 
-collection = [}
+collection = []
 collection_of_collection = []
 for key, value in matches.items():
     collection = []
