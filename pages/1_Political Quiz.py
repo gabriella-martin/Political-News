@@ -39,10 +39,10 @@ with st.expander(label = 'Please Read the Preamble', expanded=False):
     st.write('3.	**Loyalty/betrayal**: This foundation is based on the principle of loyalty and the importance of in-group loyalty and patriotism.')
     st.write('4.	**Authority/subversion**: This foundation is based on the principle of respect for authority and tradition, and the desire for order and stability.')
     st.write('5.	**Sanctity/degradation**: This foundation is based on the principle of sanctity and the desire for purity and cleanliness, and the disgust for things that are impure or polluting.')
-
+    st.write('')
     st.write("For example, someone who places a high value on the sanctity foundation might believe that it is morally wrong to engage in certain behaviors that others might consider harmless or even beneficial. Conversely, someone who places a high value on the liberty foundation might believe that individual freedom is paramount and that certain restrictions on behavior are morally unacceptable.")
     st.write("Haidt's insight is that people often act in accordance with their moral foundations, even when doing so conflicts with the moral foundations of others. This can lead to misunderstandings, disagreements, and conflicts. However, by understanding the moral foundations of others and acknowledging their validity, it is possible to bridge these divides and find common ground.")
-
+    st.write('')
 st.write('### Part 1')
 st.write('**Prompt**: When you decide whether something is right or wrong, to what extent are the following considerations relevant to your thinking? Please rate each statement using this scale:')
 st.write('')
@@ -190,7 +190,7 @@ if not submitted_2:
     authority_average = round((traditions+respect+chaos+sexroles+soldier+kidrespect)/6)
     purity_average = round((disgusting+decency+god+harmlessdg+unnatural+chastity)/6)
     compute_progressivism = round(((care_average+fairness_average)/2 - (loyalty_average+authority_average+purity_average)/3),2)
-    compute_progressivism = 0.6
+
     st.write('### Your Results')
     st.slider(label='your score', label_visibility='collapsed', min_value = -1.00, max_value=1.00, value=compute_progressivism)
     st.write('Your moral beliefs are most congruent with the:')
