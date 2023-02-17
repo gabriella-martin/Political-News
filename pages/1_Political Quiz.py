@@ -179,7 +179,7 @@ with st.expander('**Part 2**: Click to expand', expanded=False):
 
         submitted_2 = st.form_submit_button("Submit")
 
-if not submitted_2:
+if submitted_2:
     
 
     care_average =round((emotionally+weak+cruel+animal+kill+compassion)/6)
