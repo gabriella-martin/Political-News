@@ -5,8 +5,8 @@
 This app is inspired by the insights of Jonathan Haidt's seminal work [The Righteous Mind]('https://www.amazon.co.uk/Righteous-Mind-Divided-Politics-Religion/dp/0141039167') and by Ground News' [Blindspot Report]('https://ground.news/blindspot')
 
 <p align="center">
-<img src="images/righteousmind.jpeg" width="80" />
-<img src="images/blindspot.png" width="200" />
+<img src="resources/righteousmind.jpeg" width="80" />
+<img src="resources/blindspot.png" width="200" />
    
 
 </p>
