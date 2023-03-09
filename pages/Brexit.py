@@ -20,11 +20,15 @@ hide_table_row_index = """
 with open('resources/styles.css') as f:
     st.markdown(f'<style>{f.read()}</style', unsafe_allow_html=True)
 
+#loading data
+
 with open('data/links', 'rb') as l:
     links = pickle.load(l)
 
 with open('data/headlines', 'rb') as h:
     headlines = pickle.load(h)
+
+#start of visual
 
 st.markdown("<h1 style='text-align: center;color: black;'>Brexit</h1>", unsafe_allow_html=True)
 select = st.select_slider(label='timeline', options =('Left','Center-left', 'Center', 'Center-right', 'Right'), value = 'Center', label_visibility='collapsed')
