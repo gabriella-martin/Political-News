@@ -1,5 +1,9 @@
-
 import streamlit as st
+
+st.set_page_config(
+    page_title="Welcome",
+    layout="wide",
+    initial_sidebar_state='auto')
 
 st.markdown("<h1 style='text-align: center;color: black;'>Bridge the Divide</h1>", unsafe_allow_html=True)
 
@@ -30,7 +34,7 @@ st.write("By embracing this spirit of openness and curiosity, users can turn the
 st.write("So in using this app, I encourage you to be like the rider, who guides the elephant with grace and intelligence. Take control of your intuition and use your conscious reasoning to navigate the diverse political landscape, allowing yourself to be challenged and informed by the perspectives of others. The journey may be difficult, but the destination will be a more informed and empathetic understanding of the world.")
 st.write("### Details of the App")
 st.write("My app aggregates news stories from various UK media outlets that span a range of political ideologies. Some of these media outlets may be considered conservative or right-leaning, while others may be liberal or left-leaning. To classify the general political stance of each media outlet I used the [study]('https://yougov.co.uk/topics/politics/articles-reports/2017/03/07/how-left-or-right-wing-are-uks-newspapers') done by YouGov. Here is a look at their classification ")
-st.write('<p align="left"><img src="https://d25d2506sfb94s.cloudfront.net/cumulus_uploads/inlineimage/2017-03-06/Newspapers%20left%20right%20wing-01.png" width="680" />', unsafe_allow_html=True)
+st.write('<p align="center"><img src="https://d25d2506sfb94s.cloudfront.net/cumulus_uploads/inlineimage/2017-03-06/Newspapers%20left%20right%20wing-01.png" width="850" />', unsafe_allow_html=True)
 st.write("I chose to avoid using tabloid newspapers and instead used only broadsheets. I began by scraping the articles on contentious topics from the websites at the edge of each side. My left winged choices are The Guardian & The Independent and my right winged choices The Times and The Telgraph. For the most neutral I decided to use iNews")
 st.write("With the aim of providing the most up-to-date information on controversial topics, the app scrapes ten of the latest articles for each news outlet on a daily basis. Users can easily access this information by selecting a topic of interest.")
 st.write("Once a topic has been selected, I encourages users to broaden their perspectives by exploring articles that represent a range of different political opinions. ")
