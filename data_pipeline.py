@@ -1,21 +1,6 @@
+import pickle
 import requests
 from bs4 import BeautifulSoup
-
-import streamlit as st
-from streamlit_extras.image_in_tables import table_with_images
-
-import pandas as pd
-
-from streamlit_extras.app_logo import add_logo
-add_logo("logo.jpg", height=200)
-
-with open('styles.css') as f:
-    st.markdown(f'<style>{f.read()}</style', unsafe_allow_html=True)
-
-
-st.write("""<style>@import url('https://fonts.googleapis.com/css2?family=Mukta');html, body, [class*="css"]  {  
-   font-family: 'Kanit';  
-}</style>""", unsafe_allow_html=True)
 
 # RIGHT WING PIPELINE
 
@@ -90,7 +75,6 @@ class TelegraphPipeline:
                 self.recent_ten_links.append(ten_links)
         return self.recent_ten_headlines, self.recent_ten_links
 
-
 # LEFT WING PIPELINE
 
 guardian_urls = ['https://www.theguardian.com/society/transgender', 'https://www.theguardian.com/uk/immigration', 'https://www.theguardian.com/world/race', 'https://www.theguardian.com/politics/eu-referendum']
@@ -161,7 +145,7 @@ class IndependentPipeline:
             ten_links = []
             with open(filename, 'rb') as filename:
                 soup = BeautifulSoup(filename.read(), 'html.parser')
-                topic_articles = soup.find_all('div', class_ ='sc-7ax485-2 emFImu article article-default')
+                topic_articles = soup.find_all('div', class_ ='sc-lg3v5c-0 pXIQj sc-lg3v5c-2 hDMTFO hero-article article-default')
                 num = 0
                 for i in topic_articles:
                     if num <11:
@@ -219,7 +203,6 @@ class INewsPipeline:
                         ten_links.append(link)
                         num +=1
                 topic_articles = soup.find_all('span','inews__post-teaser__content__headline')
-                print(topic_articles)
                 for i in topic_articles:
                     if num < 11:
                         link = i.a['href']
@@ -240,48 +223,46 @@ class INewsPipeline:
         return self.recent_ten_headlines, self.recent_ten_links
 
 
-rw1 = TheTimesPipeline(urls=the_times_urls) 
-#rw1.get_topic_page_response()
-rw1_head_links = rw1.open_html_and_parse()
+if __name__ == '__main__':
 
-rw2 = TelegraphPipeline(urls=telegraph_urls)
-#rw2.get_topic_page_response()
-rw2_head_links = rw2.open_html_and_parse()
+    rw1 = TheTimesPipeline(urls=the_times_urls) 
+    #rw1.get_topic_page_response()
+    rw1_head_links = rw1.open_html_and_parse()
 
-lw1 = GuardianPipeline(urls=guardian_urls)
-#lw1.get_topic_page_response()
-lw1_head_links = lw1.open_html_and_parse()
+    rw2 = TelegraphPipeline(urls=telegraph_urls)
+    #rw2.get_topic_page_response()
+    rw2_head_links = rw2.open_html_and_parse()
 
-lw2 = IndependentPipeline(urls=independent_urls)
-#lw2.get_topic_page_response()
-lw2_head_links = lw2.open_html_and_parse()
+    lw1 = GuardianPipeline(urls=guardian_urls)
+    #lw1.get_topic_page_response()
+    lw1_head_links = lw1.open_html_and_parse()
 
-n = INewsPipeline(urls=i_news_links)
-#n.get_topic_page_response()
-n_head_links = n.open_html_and_parse()
+    lw2 = IndependentPipeline(urls=independent_urls)
+    #lw2.get_topic_page_response()
+    lw2_head_links = lw2.open_html_and_parse()
 
-
-headlines = [rw1_head_links[0], rw2_head_links[0], lw1_head_links[0], lw2_head_links[0], n_head_links[0]]
-links_before_formatted = [rw1_head_links[1], rw2_head_links[1], lw1_head_links[1], lw2_head_links[1], n_head_links[1]]
-
-def sort_links(links_before_formatted):
-    list_of_links = []
-    for link in links_before_formatted:
-        for topic in link:
-            for index, value in enumerate(topic):
-                topic[index] = f"<a  href='{topic[index]}'>View Article</a>"
-        list_of_links.append(links_before_formatted)
-    return(list_of_links)
+    n = INewsPipeline(urls=i_news_links)
+    #n.get_topic_page_response()
+    n_head_links = n.open_html_and_parse()
 
 
-links = sort_links(links_before_formatted)
-st.write((links[0][4][3]))
+    headlines = [rw1_head_links[0], rw2_head_links[0], lw1_head_links[0], lw2_head_links[0], n_head_links[0]]
+    links_before_formatted = [rw1_head_links[1], rw2_head_links[1], lw1_head_links[1], lw2_head_links[1], n_head_links[1]]
+
+    def sort_links(links_before_formatted):
+        list_of_links = []
+        for link in links_before_formatted:
+            for topic in link:
+                for index, value in enumerate(topic):
+                    topic[index] = f"<a  href='{topic[index]}'>View Article</a>"
+            list_of_links.append(links_before_formatted)
+        return(list_of_links)
 
 
-import pickle
+    links = sort_links(links_before_formatted)
 
-with open('links', 'wb') as l:
-    pickle.dump(links, l)
+    with open('data/links', 'wb') as l:
+        pickle.dump(links, l)
 
-with open('headlines', 'wb') as h:
-    pickle.dump(headlines, h)
+    with open('data/headlines', 'wb') as h:
+        pickle.dump(headlines, h)
