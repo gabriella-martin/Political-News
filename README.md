@@ -35,8 +35,11 @@ Once a topic has been selected, I encourages users to broaden their perspectives
 ### Example
 
 ---
+<center>
 
 ![Alt Text](resources/example.gif)
+
+</center>
 
 ---
 
