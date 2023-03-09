@@ -1,8 +1,45 @@
-# Bridge the Divide
+<h1 align="center">Bridge the Divide</h1>
+
+To view the app, please go to this [link](https://gabriella-martin-political-news-welcome-9hpibj.streamlit.app/)
+
+##### Technolgies Used
+
+
+<div align="center">
+	<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Requests_Python_Logo.png/374px-Requests_Python_Logo.png" height="60" width="50"   />
+	<img src="https://picx.zhimg.com/v2-aadd3eb87347688105b3ddccd66b42b2_ipico.jpg?source=172ae18b" height="60" width="130"  />
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" height="60" width="60"   />
+    <img src="https://avatars.githubusercontent.com/u/45109972?s=280&v=4"  width="55" height="60"/>
+
+ </div>
+
+##### Code Explanation
+
+The technological core of this project is web-scraping information from popular news outlets across the political spectrum using requests, parsing throught the HTML with BeautifulSoup to retrieve the relevant data and showing this data using the Streamlit library for Python.
+
+The code for the data pipeline can be viewed [here](https://github.com/gabriella-martin/Political-News/blob/main/data_pipeline.py), where each news outlet has a scraper class. The data is then processed with Python and pickled for use in the frontend. 
+
+
+####Details of the App
+
+My app aggregates news stories from various UK media outlets that span a range of political ideologies. Some of these media outlets may be considered conservative or right-leaning, while others may be liberal or left-leaning. To classify the general political stance of each media outlet I used the [study]('https://yougov.co.uk/topics/politics/articles-reports/2017/03/07/how-left-or-right-wing-are-uks-newspapers') done by YouGov. Here is a look at their classification 
+
+<img src="https://d25d2506sfb94s.cloudfront.net/cumulus_uploads/inlineimage/2017-03-06/Newspapers%20left%20right%20wing-01.png" />
+
+I began by scraping the articles on contentious topics from the websites at the edge of each side (The Guardian & The Daily Mail) and the most neutral (The Independent). 
+
+With the aim of providing the most up-to-date information on controversial topics, the app scrapes ten of the latest articles for each news outlet on a weekly basis. Users can easily access this information by selecting a topic of interest.
+
+Once a topic has been selected, I encourages users to broaden their perspectives by exploring articles that represent a range of different political opinions. 
+
+#####Example
+
+![Alt Text](resources/example.gif)
+
 
 #### Inspiration
 
-This app is inspired by the insights of Jonathan Haidt's seminal work [The Righteous Mind]('https://www.amazon.co.uk/Righteous-Mind-Divided-Politics-Religion/dp/0141039167') and by Ground News' [Blindspot Report]('https://ground.news/blindspot')
+This app is inspired by the insights of Jonathan Haidt's work [The Righteous Mind]('https://www.amazon.co.uk/Righteous-Mind-Divided-Politics-Religion/dp/0141039167') and by Ground News' [Blindspot Report]('https://ground.news/blindspot')
 
 <p align="center">
 <img src="resources/righteousmind.jpeg" width="80" />
@@ -17,7 +54,8 @@ This app is inspired by the insights of Jonathan Haidt's seminal work [The Right
 In today's world, it's easy to become engulfed solely in our own political beliefs and viewpoints. This can lead to a lack of understanding and empathy towards those who hold different political views. With political polarization on the rise, it's becoming increasingly important to strive for greater political literacy and a more nuanced understanding of the issues we face.
 
 This app seeks to challenge and broaden people's perspectives on political issues by presenting them with multiple viewpoints on the same topic. By exposing users to different ways of thinking and reasoning, the app aims to help reduce the effects of confirmation bias and encourage more open-minded and empathetic discussions of political issues.
-In a time of political polarization, where the media and social media algorithms tend to reinforce our preexisting beliefs, this app represents an important step towards greater political diversity and a more nuanced understanding of the world.
+
+In a time of political polarization, where the media and social media algorithms tend to reinforce our preexisting beliefs, this app aims to serve a more nuanced understanding of the world and its different issues.
 
 #### What is confirmation bias?
 
@@ -47,8 +85,6 @@ Haidt argues that the elephant is much larger and stronger than the rider, and t
 
 This analogy highlights the importance of being open to new perspectives and ideas, especially when it comes to political issues. By exposing ourselves to different viewpoints, we can help guide our intuitive elephants in new and unfamiliar directions, and by doing so, broaden our perspectives and gain a deeper understanding of the world
 
-Haidt also develops morals -- go to this link to do test
-
 ### The Goal of this App
 
 ---
@@ -61,27 +97,5 @@ By embracing this spirit of openness and curiosity, users can turn the experienc
 
 So in using this app, I encourage you to be like the rider, who guides the elephant with grace and intelligence. Take control of your intuition and use your conscious reasoning to navigate the diverse political landscape, allowing yourself to be challenged and informed by the perspectives of others. The journey may be difficult, but the destination will be a more informed and empathetic understanding of the world.
 
-### Details of the App (include image)
-
----
-
-For a more technical explanation please visit this [link]('google.com')
-
-The app is primarily a multiple source UK news aggregator with a selection of sources being selected 
-
-
-My app aggregates news stories from various UK media outlets that span a range of political ideologies. Some of these media outlets may be considered conservative or right-leaning, while others may be liberal or left-leaning. To classify the general political stance of each media outlet I used the [study]('https://yougov.co.uk/topics/politics/articles-reports/2017/03/07/how-left-or-right-wing-are-uks-newspapers') done by YouGov. Here is a look at their classification 
-
-<img src="https://d25d2506sfb94s.cloudfront.net/cumulus_uploads/inlineimage/2017-03-06/Newspapers%20left%20right%20wing-01.png" />
-
-I began by scraping the articles on contentious topics from the websites at the edge of each side (The Guardian & The Daily Mail) and the most neutral (The Independent). 
-
-With the aim of providing the most up-to-date information on controversial topics, the app scrapes ten of the latest articles for each news outlet on a daily basis. Users can easily access this information by selecting a topic of interest.
-
-Once a topic has been selected, I encourages users to broaden their perspectives by exploring articles that represent a range of different political opinions. 
-
-This feature is intended to be used as a way to engage with opposing viewpoints in an open-minded manner to gain a more nuanced and well-rounded understanding of each issue.
-
-### Future Roadmap
 
 
