@@ -1,26 +1,39 @@
+import pickle
 import streamlit as st
 import pandas as pd
 from streamlit_extras.image_in_tables import table_with_images
-from streamlit_extras.app_logo import add_logo
 
-st.markdown("<h1 style='text-align: center;color: black;'>Racism</h1>", unsafe_allow_html=True)
-with open('styles.css') as f:
+#styling
+
+st.set_page_config(
+    page_title="Racism",
+    initial_sidebar_state='auto')
+
+with open('resources/styles.css') as f:
     st.markdown(f'<style>{f.read()}</style', unsafe_allow_html=True)
 
+#loading data
 
-
-
-select = st.select_slider(label='timeline', options =('Left','Center-left', 'Center', 'Center-right', 'Right'), value = 'Center', label_visibility='collapsed')
-
-
-import pickle
-
-with open('links', 'rb') as l:
+with open('data/links', 'rb') as l:
     links = pickle.load(l)
 
-with open('headlines', 'rb') as h:
+with open('data/headlines', 'rb') as h:
     headlines = pickle.load(h)
 
+hide_table_row_index = """
+            <style>
+
+            thead tr th:first-child {display:none}
+            tbody th {display:none}
+            
+            </style>
+            """
+
+#start of visual
+
+st.markdown("<h1 style='text-align: center;color: black;'>Racism</h1>", unsafe_allow_html=True)
+
+select = st.select_slider(label='timeline', options =('Left','Center-left', 'Center', 'Center-right', 'Right'), value = 'Center', label_visibility='collapsed')
 
 
 if select == 'Center':
@@ -40,14 +53,6 @@ if select == 'Center-right':
 
 
 df = (pd.DataFrame(data))
-hide_table_row_index = """
-            <style>
-
-            thead tr th:first-child {display:none}
-            tbody th {display:none}
-            
-            </style>
-            """
 
 
 with st.expander('**Principles** ', expanded=False):
@@ -61,7 +66,6 @@ with st.expander('**Principles** ', expanded=False):
 
 with st.expander('**Headlines** ', expanded=True):
 
-    # Inject CSS with Markdown
     st.markdown(hide_table_row_index, unsafe_allow_html=True)
 
     df_html = table_with_images(df=df, url_columns=('Source',))
@@ -69,7 +73,6 @@ with st.expander('**Headlines** ', expanded=True):
 
     st.write('')
 
-# only grab articles from guardian
 
 with st.expander('**Video Debates** ', expanded=False):
 
