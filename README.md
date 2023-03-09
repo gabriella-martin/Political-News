@@ -20,7 +20,7 @@ The technological core of this project is web-scraping information from popular 
 The code for the data pipeline can be viewed [here](https://github.com/gabriella-martin/Political-News/blob/main/data_pipeline.py), where each news outlet has a scraper class. The data is then processed with Python and pickled for use in the frontend. 
 
 
-####Details of the App
+#### Details of the App
 
 My app aggregates news stories from various UK media outlets that span a range of political ideologies. Some of these media outlets may be considered conservative or right-leaning, while others may be liberal or left-leaning. To classify the general political stance of each media outlet I used the [study]('https://yougov.co.uk/topics/politics/articles-reports/2017/03/07/how-left-or-right-wing-are-uks-newspapers') done by YouGov. Here is a look at their classification 
 
@@ -32,10 +32,13 @@ With the aim of providing the most up-to-date information on controversial topic
 
 Once a topic has been selected, I encourages users to broaden their perspectives by exploring articles that represent a range of different political opinions. 
 
-#####Example
+### Example
+
+---
 
 ![Alt Text](resources/example.gif)
 
+---
 
 #### Inspiration
 
