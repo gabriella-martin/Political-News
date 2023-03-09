@@ -1,5 +1,10 @@
 import streamlit as st
 
+st.set_page_config(
+    page_title="Quiz",
+    layout="wide",
+    initial_sidebar_state='auto')
+
 st.markdown("<h1 style='text-align: center;color: black;'>Moral Foundations Quiz</h1>", unsafe_allow_html=True)
 
 # introductory text with link
@@ -43,6 +48,7 @@ with st.expander(label = 'Please Read the Preamble', expanded=False):
     st.write("For example, someone who places a high value on the sanctity foundation might believe that it is morally wrong to engage in certain behaviors that others might consider harmless or even beneficial. Conversely, someone who places a high value on the liberty foundation might believe that individual freedom is paramount and that certain restrictions on behavior are morally unacceptable.")
     st.write("Haidt's insight is that people often act in accordance with their moral foundations, even when doing so conflicts with the moral foundations of others. This can lead to misunderstandings, disagreements, and conflicts. However, by understanding the moral foundations of others and acknowledging their validity, it is possible to bridge these divides and find common ground.")
     st.write('')
+
 st.write('### Part 1')
 st.write('**Prompt**: When you decide whether something is right or wrong, to what extent are the following considerations relevant to your thinking? Please rate each statement using this scale:')
 st.write('')
@@ -106,8 +112,6 @@ with st.expander('**Part 1**: Click to expand', expanded=False):
 
         st.markdown("<p style='text-align: center;color: black;'>16: Whether or not someone acted in a way that God would approve of </p>", unsafe_allow_html=True)
         god = st.slider('Q16 Relevancy', min_value=0, max_value=5, label_visibility='collapsed')
-
-
 
 
         submitted = st.form_submit_button("Submit")
@@ -180,11 +184,8 @@ with st.expander('**Part 2**: Click to expand', expanded=False):
         submitted_2 = st.form_submit_button("Submit")
 
 if submitted_2:
-    
 
     care_average =round((emotionally+weak+cruel+animal+kill+compassion)/6)
-
-
     fairness_average = round((rights+unfairly+treated+justice+fairly+rich)/6)
     loyalty_average= round((loyalty+betray+lovecountry+team+history+family)/6)
     authority_average = round((traditions+respect+chaos+sexroles+soldier+kidrespect)/6)
