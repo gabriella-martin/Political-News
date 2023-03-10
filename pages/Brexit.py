@@ -5,10 +5,6 @@ from streamlit_extras.image_in_tables import table_with_images
 
 #styling
 
-st.set_page_config(
-    page_title="Brexit",
-    initial_sidebar_state='auto')
-
 hide_table_row_index = """
             <style>
 

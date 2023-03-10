@@ -1,10 +1,5 @@
 import streamlit as st
 
-st.set_page_config(
-    page_title="Quiz",
-    layout="wide",
-    initial_sidebar_state='auto')
-
 st.markdown("<h1 style='text-align: center;color: black;'>Moral Foundations Quiz</h1>", unsafe_allow_html=True)
 
 # introductory text with link

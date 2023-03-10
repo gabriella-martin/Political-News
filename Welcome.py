@@ -2,7 +2,7 @@ import streamlit as st
 
 st.set_page_config(
     page_title="Welcome",
-    layout="wide",
+    layout="centered",
     initial_sidebar_state='auto')
 
 st.markdown("<h1 style='text-align: center;color: black;'>Bridge the Divide</h1>", unsafe_allow_html=True)

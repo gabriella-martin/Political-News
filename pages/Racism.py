@@ -5,10 +5,6 @@ from streamlit_extras.image_in_tables import table_with_images
 
 #styling
 
-st.set_page_config(
-    page_title="Racism",
-    initial_sidebar_state='auto')
-
 with open('resources/styles.css') as f:
     st.markdown(f'<style>{f.read()}</style', unsafe_allow_html=True)
 
