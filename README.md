@@ -3,7 +3,7 @@
 *The best way to understand the app is by visiting it [here](https://gabriella-martin-political-news-welcome-nuf5h8.streamlit.app/), please first read the disclaimer below*
 
 ---
-**Technologies Used**: Requests, BeautifulSoup, Pandas, NLTK, Scikit-learn, Python & Streamlit
+**Technologies Used**: Requests, BeautifulSoup, Pandas, NLTK, Scikit-learn, Python, Git & Streamlit
 
 <div align="center">
 	<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Requests_Python_Logo.png/374px-Requests_Python_Logo.png" height="60" width="50"   />
@@ -11,7 +11,8 @@
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg"  width="55" height="60"/>
     <img src="https://miro.medium.com/v2/resize:fit:592/1*YM2HXc7f4v02pZBEO8h-qw.png"  width="55" height="60"/>
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Scikit_learn_logo_small.svg/2560px-Scikit_learn_logo_small.svg.png"  width="120" height="60"/>
-     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" height="60" width="60"   />
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" height="60" width="60"   />
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" height="60" width="60"   />
     <img src="https://avatars.githubusercontent.com/u/45109972?s=280&v=4"  width="55" height="60">
 
 
