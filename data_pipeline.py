@@ -226,23 +226,23 @@ class INewsPipeline:
 if __name__ == '__main__':
 
     rw1 = TheTimesPipeline(urls=the_times_urls) 
-    #rw1.get_topic_page_response()
+    rw1.get_topic_page_response()
     rw1_head_links = rw1.open_html_and_parse()
 
     rw2 = TelegraphPipeline(urls=telegraph_urls)
-    #rw2.get_topic_page_response()
+    rw2.get_topic_page_response()
     rw2_head_links = rw2.open_html_and_parse()
 
     lw1 = GuardianPipeline(urls=guardian_urls)
-    #lw1.get_topic_page_response()
+    lw1.get_topic_page_response()
     lw1_head_links = lw1.open_html_and_parse()
 
     lw2 = IndependentPipeline(urls=independent_urls)
-    #lw2.get_topic_page_response()
+    lw2.get_topic_page_response()
     lw2_head_links = lw2.open_html_and_parse()
 
     n = INewsPipeline(urls=i_news_links)
-    #n.get_topic_page_response()
+    n.get_topic_page_response()
     n_head_links = n.open_html_and_parse()
 
 
