@@ -145,7 +145,7 @@ class IndependentPipeline:
             ten_links = []
             with open(filename, 'rb') as filename:
                 soup = BeautifulSoup(filename.read(), 'html.parser')
-                topic_articles = soup.find_all('div', class_ ='sc-lg3v5c-0 pXIQj sc-lg3v5c-2 hDMTFO hero-article article-default')
+                topic_articles = soup.find_all('div', class_ ='sc-lg3v5c-0 hJgjOp sc-lg3v5c-2 jJLexE hero-article article-default')
                 num = 0
                 for i in topic_articles:
                     if num <11:
@@ -241,28 +241,29 @@ if __name__ == '__main__':
     lw2.get_topic_page_response()
     lw2_head_links = lw2.open_html_and_parse()
 
+
     n = INewsPipeline(urls=i_news_links)
     n.get_topic_page_response()
     n_head_links = n.open_html_and_parse()
 
 
-    headlines = [rw1_head_links[0], rw2_head_links[0], lw1_head_links[0], lw2_head_links[0], n_head_links[0]]
-    links_before_formatted = [rw1_head_links[1], rw2_head_links[1], lw1_head_links[1], lw2_head_links[1], n_head_links[1]]
+headlines = [rw1_head_links[0], rw2_head_links[0], lw1_head_links[0], lw2_head_links[0], n_head_links[0]] 
+links_before_formatted = [rw1_head_links[1], rw2_head_links[1], lw1_head_links[1], lw2_head_links[1], n_head_links[1]]
 
-    def sort_links(links_before_formatted):
-        list_of_links = []
-        for link in links_before_formatted:
-            for topic in link:
-                for index, value in enumerate(topic):
-                    topic[index] = f"<a  href='{topic[index]}'>View Article</a>"
-            list_of_links.append(links_before_formatted)
-        return(list_of_links)
+def sort_links(links_before_formatted):
+    list_of_links = []
+    for link in links_before_formatted:
+        for topic in link:
+            for index, value in enumerate(topic):
+                topic[index] = f"<a  href='{topic[index]}'>View Article</a>"
+        list_of_links.append(links_before_formatted)
+    return(list_of_links)
 
 
-    links = sort_links(links_before_formatted)
+links = sort_links(links_before_formatted)
 
-    with open('data/links', 'wb') as l:
+with open('data/links', 'wb') as l:
         pickle.dump(links, l)
 
-    with open('data/headlines', 'wb') as h:
+with open('data/headlines', 'wb') as h:
         pickle.dump(headlines, h)
